@@ -1,4 +1,4 @@
-package com.example.oneseein.model;
+package com.example.COVID19.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

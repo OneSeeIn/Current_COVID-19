@@ -1,8 +1,7 @@
-package com.example.oneseein.controller;
+package com.example.COVID19.controller;
 
-import com.example.oneseein.model.Member;
+import com.example.COVID19.model.Member;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
