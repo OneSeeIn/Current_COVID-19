@@ -9,15 +9,16 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class C_COVID {
+    //누적 확진률
     private String accDefRate;
-    private String accExamCnt;
-    private String createDt;
-    private String deathCnt;
-    private String decideCnt;
-    private String seq;
-    private String stateDt;
-    private String stateTime;
-    private String updateDt;
+    private String accExamCnt;  //누적 의심 검사 수
+    private String createDt;  //등록일시분초
+    private String deathCnt;  //사망자 수
+    private String decideCnt;  //확진자 수
+    private String seq;  //게시글번호(감염현황 고유값)
+    private String stateDt;  //기준일
+    private String stateTime;  //기준시간
+    private String updateDt; //수정일시분초
 
 
     public void setData(String name, String value) {
