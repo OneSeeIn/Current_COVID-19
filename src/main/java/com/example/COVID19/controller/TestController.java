@@ -21,19 +21,19 @@ public class TestController {
         return "Hello!";
     }
 
-    @GetMapping("/all")
-    public List getAllData() throws Exception{
-        return testService.getAllData();
+    @GetMapping("/saveFromApi")
+    public List saveFromApi() throws Exception{
+        return testService.saveFromApi();
     }
 
-    @GetMapping("")
-    public List getAllData(
-            @RequestParam("index")String index,
-            @RequestParam("size")String size,
-            @RequestParam("startCreateDt")String startCreateDt,
-            @RequestParam("endCreateDt")String endCreateDt
+    @GetMapping("get/listPage")
+    public Object getListPage(
+            @RequestParam("index")int index,
+            @RequestParam("size")int size,
+            @RequestParam(value = "startCreateDt",required = false)String startCreateDt,
+            @RequestParam(value ="endCreateDt",required = false)String endCreateDt
     ) throws Exception{
-        return testService.getData(index,size,startCreateDt,endCreateDt);
+        return testService.getListPage(index,size,startCreateDt,endCreateDt);
     }
 
 

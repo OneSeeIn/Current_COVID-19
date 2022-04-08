@@ -1,6 +1,12 @@
 package com.example.COVID19.service;
 
-import com.example.COVID19.model.C_COVID;
+import com.example.COVID19.model.C_CovidDto;
+import com.example.COVID19.repository.C_Covid;
+import com.example.COVID19.repository.C_CovidRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -22,7 +28,10 @@ import java.util.List;
 @Service
 public class TestService {
 
-    public List getAllData() throws Exception{
+    @Autowired
+    C_CovidRepository repository;
+
+    public List saveFromApi() throws Exception{
 
         // 본인이 받은 api키를 추가
         String key = "5lBEJMUflpy%2BpVCw4PlMxO64hHY1LwPai%2Fc1pKww9rnUF5n07l8w3oUVARU4h4s277M%2B3h1%2B32CNYwXkT2H2%2Bg%3D%3D";
@@ -55,15 +64,15 @@ public class TestService {
         }
         rd.close();
         conn.disconnect();
-        List<C_COVID> list = getResultList(sb.toString());
+        List<C_CovidDto> list = getResultList(sb.toString());
 //        System.out.println("list = " + list); //파싱 결과 확인
         return list;
     }
 
-    private static List<C_COVID> getResultList(String data) throws Exception {
+    private  List<C_CovidDto> getResultList(String data) throws Exception {
 
 //결과값을 넣어줄 map을 선언해줍니다.
-        List<C_COVID> result = new ArrayList<>();
+        List<C_CovidDto> result = new ArrayList<>();
 
         InputSource is = new InputSource(new StringReader(data));
 
@@ -78,13 +87,15 @@ public class TestService {
         int nodeListCount = nodeList.getLength();
         for (int i = 0; i < nodeListCount; i++) {
             NodeList childNode = nodeList.item(i).getChildNodes();
-            C_COVID c_COVID = new C_COVID();
+            C_Covid c_Covid = new C_Covid();
             int childNodeCount = childNode.getLength();
             for (int j = 0; j < childNodeCount; j++) {
-                c_COVID.setData(childNode.item(j).getNodeName(), childNode.item(j).getTextContent());
+                c_Covid.setData(childNode.item(j).getNodeName(), childNode.item(j).getTextContent());
             }
-            result.add(c_COVID);
+            repository.save(c_Covid);
+//            result.add(c_Covid);
         }
+
 
         return result;
     }
@@ -122,9 +133,14 @@ public class TestService {
         }
         rd.close();
         conn.disconnect();
-        List<C_COVID> list = getResultList(sb.toString());
+        List<C_CovidDto> list = getResultList(sb.toString());
 //        System.out.println("list = " + list); //파싱 결과 확인
         return list;
+    }
+
+    public Object getListPage(int index, int size, String startCreateDt, String endCreateDt) {
+        PageRequest pageRequest = PageRequest.of(index,size,Sort.by("seq").descending());
+        return repository.findAll(pageRequest).getContent();
     }
 }
 
