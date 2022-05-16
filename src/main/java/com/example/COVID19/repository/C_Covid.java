@@ -38,8 +38,8 @@ public class C_Covid {
 
 
     public void setData(String name, String value) {
-            if(value == null) return;
-     	    switch (name){
+	    if(value.equals("null")) return;
+        switch (name){
             case ("accDefRate"): {this.accDefRate = value; break;}
             case ("accExamCnt"): {this.accExamCnt = Integer.parseInt(value); break;}
             case ("createDt"): {this.createDt = Timestamp.valueOf(value); break;}
@@ -66,3 +66,4 @@ public class C_Covid {
     }
 
 }
+
