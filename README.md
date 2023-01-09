@@ -1,10 +1,10 @@
-[mariaDB] 시작 systemctl start mariadb
+# [mariaDB] 시작 systemctl start mariadb
 
-종료 systemctl stop mariadb
+- 종료 systemctl stop mariadb
 
-재시작 systemctl restart mariadb
+- 재시작 systemctl restart mariadb
 
-[jar 백그라운드 실행]
+# [jar 백그라운드 실행]
 
 - 리눅스 환경에서 java (jar)를 데몬처럼 실행
 
