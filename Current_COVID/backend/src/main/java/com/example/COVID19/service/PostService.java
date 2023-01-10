@@ -52,7 +52,7 @@ public class PostService {
         Post result  = postRepository.save(post);
         ArrayList<PostResource> resourceList = new ArrayList<>();
         for(MultipartFile file : files){
-            Map upload = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.asMap("public_id", file.getName()));
+            Map upload = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.asMap("public_id", file.getOriginalFilename()));
         
             PostResource postResource =  PostResource.builder().
                                 resourceUrl((String)upload.get("url"))
