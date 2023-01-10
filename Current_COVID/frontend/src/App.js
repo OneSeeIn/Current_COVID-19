@@ -4,7 +4,7 @@ import Login from "./components/Login";
 import { useRecoilValue } from "recoil";
 import { loginState } from "./store/atom";
 import Main from "./components/Main";
-import NotFound from "./components/Login copy";
+import NotFound from "./components/NotFound";
 
 function App() {
   const isLoggedIn = useRecoilValue(loginState);
