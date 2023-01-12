@@ -14,6 +14,17 @@ export const postFormState = atom({
   default: {
     title: "",
     contents: "",
+    createDt: 0,
+    postResourcesList: [],
+    comments: [],
+  },
+});
+
+export const uploadFormState = atom({
+  key: "uploadFormState",
+  default: {
+    title: "",
+    contents: "",
     createDt: "",
     postResourcesList: [],
   },

@@ -3,7 +3,8 @@ import { postFormState } from "../store/atom";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Input, Typography } from "@mui/material";
+import { FileUpload } from "@mui/icons-material";
 
 const UploadForm = () => {
   const { handleSubmit, register, setValue } = useForm();
@@ -30,10 +31,15 @@ const UploadForm = () => {
   return (
     <div className="form-group">
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-        <input name="files" multiple="multiple" type="file" onChange={onChange} />
+        <Button component="label">
+          <Typography variant="button">{"파일 선택"}</Typography>
+          <input name="files" multiple="multiple" type="file" onChange={onChange} hidden />
+        </Button>
         <input name="postTitle" type="text" onChange={onChange} />
         <input name="postContent" type="text" onChange={onChange} />
-        <Button type="submit">upLoad</Button>
+        <Button variant="contained" type="submit">
+          <FileUpload></FileUpload>upLoad
+        </Button>
       </Box>
     </div>
   );
